@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>LagoVista.Core.UWP</id>
+    <version>0.8.6-alpha00532</version>
+    <authors>Software Logistics, LLC</authors>
+    <owners>Software Logistics, LLC</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>http://www.lagovista-iot.com/opensource</projectUrl>
+    <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
+    <description>Core Functionality to build Windows 10 Apps on the LagoVista IoT and Devices Framework.</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>HomeAutomation IoT UWP</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="LagoVista.Core" version="0.8.0" />
+      <dependency id="LagoVista.Core.Networking" version="0.8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="readme.txt" target="" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-arm\native" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-arm\native" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x64\native" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x64\native" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x86\native" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x86\native" />
+  </files>
+</package>
