@@ -15,7 +15,7 @@
             <cvt:VisibilityConverter x:Key="VisibilityConverter" />
             <cvt:InverseVisibilityConverter x:Key="InverseVisibilityConverter" />
         </Grid.Resources>
-        <cmn:TapableImage Source="ms-appx:///LagoVista.Common.UI/Images/PowerOn.png" Grid.Column="1" TapDownCommand="{Binding PowerOffCommand}" Visibility="{Binding IsPowerOn, Converter={StaticResource VisibilityConverter}}" />
-        <cmn:TapableImage Source="ms-appx:///LagoVista.Common.UI/Images/PowerOff.png" Grid.Column="1" TapDownCommand="{Binding PowerOnCommand}" Visibility="{Binding IsPowerOn, Converter={StaticResource InverseVisibilityConverter}}"/>
+        <cmn:TapableImage Source="LagoVista.UWP.UI;component/Resources/Images/PowerOn.png" Grid.Column="1" TapDownCommand="{Binding PowerOffCommand}" Visibility="{Binding IsPowerOn, Converter={StaticResource VisibilityConverter}}" />
+        <cmn:TapableImage Source="LagoVista.UWP.UI;component/Resources/Images/PowerOff.png" Grid.Column="1" TapDownCommand="{Binding PowerOnCommand}" Visibility="{Binding IsPowerOn, Converter={StaticResource InverseVisibilityConverter}}"/>
     </Grid>
 </UserControl>

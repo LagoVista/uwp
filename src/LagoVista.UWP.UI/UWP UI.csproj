@@ -141,32 +141,32 @@
     <Compile Include="Views\DeviceDiscoveryView.xaml.cs">
       <DependentUpon>DeviceDiscoveryView.xaml</DependentUpon>
     </Compile>
-    <Content Include="Images\CheckMark.png">
+    <EmbeddedResource Include="Images\CheckMark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Down.png" />
-    <Content Include="Images\fan_off.png" />
-    <Content Include="Images\fan_on.png" />
-    <Content Include="Images\Left.png" />
-    <Content Include="Images\light_off.png" />
-    <Content Include="Images\light_on.png" />
-    <Content Include="Images\pin.png" />
-    <Content Include="Images\PowerOff.png" />
-    <Content Include="Images\PowerOn.png" />
-    <Content Include="Images\refreshing.png" />
-    <Content Include="Images\ViewPassword.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Down.png" />
+    <EmbeddedResource Include="Images\fan_off.png" />
+    <EmbeddedResource Include="Images\fan_on.png" />
+    <EmbeddedResource Include="Images\Left.png" />
+    <EmbeddedResource Include="Images\light_off.png" />
+    <EmbeddedResource Include="Images\light_on.png" />
+    <EmbeddedResource Include="Images\pin.png" />
+    <EmbeddedResource Include="Images\PowerOff.png" />
+    <EmbeddedResource Include="Images\PowerOn.png" />
+    <EmbeddedResource Include="Images\refreshing.png" />
+    <EmbeddedResource Include="Images\ViewPassword.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\VolumeDown.png" />
-    <Content Include="Images\VolumeMute.png" />
-    <Content Include="Images\Ok.png" />
-    <Content Include="Images\PageDown.png" />
-    <Content Include="Images\PageUp.png" />
-    <Content Include="Images\Right.png" />
-    <Content Include="Images\Up.png" />
-    <Content Include="Images\VolumeUp.png" />
-    <Content Include="Properties\LagoVista.Common.UI.rd.xml" />
-    <Content Include="ReadMe.txt" />
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\VolumeDown.png" />
+    <EmbeddedResource Include="Images\VolumeMute.png" />
+    <EmbeddedResource Include="Images\Ok.png" />
+    <EmbeddedResource Include="Images\PageDown.png" />
+    <EmbeddedResource Include="Images\PageUp.png" />
+    <EmbeddedResource Include="Images\Right.png" />
+    <EmbeddedResource Include="Images\Up.png" />
+    <EmbeddedResource Include="Images\VolumeUp.png" />
+    <EmbeddedResource Include="Properties\LagoVista.Common.UI.rd.xml" />
+    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LagoVista.Core.UWP\Core UWP.csproj">
@@ -192,9 +192,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

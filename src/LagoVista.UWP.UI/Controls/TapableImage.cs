@@ -23,6 +23,7 @@ namespace LagoVista.UWP.UI
         public TapableImage()
         {
             _image = new Image();
+            _image.Stretch = Stretch.Uniform;
             _caption = new TextBlock() { Foreground = new SolidColorBrush(Colors.White), FontSize = 16, TextAlignment = TextAlignment.Center };
 
             RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });

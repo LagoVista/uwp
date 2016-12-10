@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>LagoVista.Core.UWP</id>
-    <version>0.8.6-alpha00532</version>
+    <version>0.8.9-alpha00517</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -20,11 +20,13 @@
   </metadata>
   <files>
     <file src="readme.txt" target="" />
-    <file src="bin\ARM\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-arm\native" />
-    <file src="bin\ARM\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-arm\native" />
-    <file src="bin\x64\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x64\native" />
-    <file src="bin\x64\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x64\native" />
-    <file src="bin\x86\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x86\native" />
-    <file src="bin\x86\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x86\native" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="bin\Release\LagoVista.Core.UWP.dll" target="ref\uap10.0" />
+    <file src="bin\Release\LagoVista.Core.UWP.pri" target="ref\uap10.0" />
   </files>
 </package>

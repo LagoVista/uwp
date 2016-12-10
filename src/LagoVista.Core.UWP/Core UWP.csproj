@@ -140,8 +140,8 @@
     <Compile Include="Services\WebServer.cs" />
     <Compile Include="ViewModels\Common\DeviceDiscoveryViewModel.cs" />
     <Compile Include="ViewModels\Common\NetworkSettingsViewModel.cs" />
-    <Content Include="Properties\LagoVista.Common.UWP.rd.xml" />
-    <Content Include="ReadMe.txt" />
+    <EmbeddedResource Include="Properties\LagoVista.Common.UWP.rd.xml" />
+    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
