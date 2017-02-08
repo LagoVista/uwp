@@ -1,15 +1,16 @@
 ﻿<Page
-    x:Class="LagoVista.UWP.Examples.MainPage"
+    x:Class="LagoVista.UWP.Server.Examples.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LagoVista.UWP.Examples"
+    xmlns:local="using:LagoVista.UWP.Server.Examples"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel>
-            <Button Content="Start Discovery" Command="{Binding StartSSDPDiscoveryCommand}" Width="200" Height="40" />
+            <Button Content="Start Listening" Command="{Binding StartSSDPServerCommand}" Width="200" Height="40" />
         </StackPanel>
     </Grid>
 </Page>

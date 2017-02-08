@@ -4,51 +4,36 @@ using LagoVista.Core.Networking.Interfaces;
 using LagoVista.Core.Networking.Models;
 using LagoVista.Core.PlatformSupport;
 using LagoVista.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LagoVista.UWP.Examples.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        ISSDPServer _server;
-
-        UPNPConfiguration _configuration = new UPNPConfiguration()
-        {
-            FriendlyName = "Example uPnP Server",
-            Manufacture = "Software Logistics, LLC",
-            SerialNumber = "1234",
-            DefaultPageHtml = @"<html>
-<head>
-<title>Lago Vista uPnP server Sample App</title>
-</head>
-<body>
-Path not found.
-</body>
-
-</html>"
-            
-        };
+        ISSDPClient _client;
 
 
         public MainViewModel()
         {
-            StartSSDPServerCommand = new RelayCommand(StartSSDPServer);
+            StartSSDPDiscoveryCommand = new RelayCommand(StartSSDPDiscovery);
         }
 
-        public void StartSSDPServer()
+        public void StartSSDPDiscovery()
         {
             var logger = SLWIOC.Get<ILogger>();
-            _server = SLWIOC.Get<ISSDPServer>();
-
-            //_server = Core.Networking.Services.NetworkServices.GetSSDPServer();
-            _server.MakeDiscoverable(9050, _configuration);
-            _server.ShowDiagnostics = true;
+            _client = SLWIOC.Get<ISSDPClient>();
+            _client.ShowDiagnostics = true;
+            _client.NewDeviceFound += _client_NewDeviceFound;
+            _client.SsdpQueryAsync(port: 1901);
         }
 
-        public RelayCommand StartSSDPServerCommand { get; private set; }
+
+        private void _client_NewDeviceFound(object sender, uPnPDevice e)
+        {
+            Logger.Log(LogLevel.Message, "ClientFound", e.FriendlyName);
+        }
+
+        public RelayCommand StartSSDPDiscoveryCommand { get; private set; }
+
     }
 }

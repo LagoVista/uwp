@@ -148,7 +148,7 @@ Path not found.
 
             _metaDataPort = metaDataPort;
             await _webListener.BindServiceNameAsync(metaDataPort.ToString());
-            await _ssdpDiscoveryListener.BindEndpointAsync(null, "1900");
+            await _ssdpDiscoveryListener.BindEndpointAsync(null, _config.UdpListnerPort.ToString());
             _ssdpDiscoveryListener.JoinMulticastGroup(new HostName("239.255.255.250"));
         }
 

@@ -21,49 +21,43 @@ namespace LagoVista.Core.UWP.Services
     public class SSDPClient : ServiceBase, ISSDPClient
     {
         DatagramSocket _readerSocket;
+        private int _ssdpPort;
 
-        const string multicastIP = "239.255.255.250";
+        private string _ssdp_ip = "239.255.255.250";
         const int multicastPort = 1900;
-        //const int unicastPort = 1901fdfa
         const int MaxResultSize = 8000;
 
         public event EventHandler<uPnPDevice> NewDeviceFound;
 
         private List<String> _foundDevices = new List<string>();
 
-        private const string SSDP_IP = "239.255.255.250";
-        private const string SSDP_PORT = "1900";
-        private const string SSDP_QUERY = "M-SEARCH * HTTP/1.1\r\n" +
-                                          "HOST: " + SSDP_IP + ":" + SSDP_PORT + "\r\n" +
-                                          "MAN: \"ssdp:discover\"\r\n" +
-                                          "MX: [MAX_TIME]\r\n" +
-                                          "ST: [SDPFILTERTYPE]\r\n\r\n";
-
         private string ProcessSSDPResponse(string response)
         {
-            var reader = new StringReader(response);
-            var lines = new List<string>();
-            string line;
-            for (;;)
+            using (var reader = new StringReader(response))
             {
-                line = reader.ReadLine();
+                var lines = new List<string>();
+                string line;
+                for (;;)
+                {
+                    line = reader.ReadLine();
 
-                if (line == null)
-                    break;
+                    if (line == null)
+                        break;
 
-                if (line != "")
-                    lines.Add(line);
+                    if (line != "")
+                        lines.Add(line);
+                }
+
+                var location = lines.Where(lin => lin.ToLower().StartsWith("location:")).FirstOrDefault();
+
+                if (!_foundDevices.Contains(location.ToLower()))
+                {
+                    _foundDevices.Add(location.ToLower());
+                    return location;
+                }
+                else
+                    return null;
             }
-
-            var location = lines.Where(lin => lin.ToLower().StartsWith("location:")).FirstOrDefault();
-
-            if (!_foundDevices.Contains(location.ToLower()))
-            {
-                _foundDevices.Add(location.ToLower());
-                return location;
-            }
-            else
-                return null;
         }
 
         public ILogger Logger
@@ -94,11 +88,22 @@ namespace LagoVista.Core.UWP.Services
             }
         }
 
-        public async Task SsdpQueryAsync(string filter = "ssdp:all", int seconds = 5)
+        private string GetSSDPQuery(int maxTime, int port, string filter)
         {
+            return "M-SEARCH * HTTP/1.1\r\n" +
+                                  "HOST: " + _ssdp_ip + ":" + _ssdpPort + "\r\n" +
+                                  "MAN: \"ssdp:discover\"\r\n" +
+                                  "MX: " + maxTime + "\r\n" +
+                                  "ST: " + filter + "\r\n\r\n";
+
+        }
+
+        public async Task SsdpQueryAsync(string filter = "ssdp:all", int seconds = 5, int port = 1900)
+        {
+            _ssdpPort = port;
             _foundDevices = new List<string>();
-            var remoteIP = new Windows.Networking.HostName(SSDP_IP);
-            var ssdpQuery = SSDP_QUERY.Replace("[SDPFILTERTYPE]", filter).Replace("[MAX_TIME]", seconds.ToString());
+            var remoteIP = new Windows.Networking.HostName(_ssdp_ip);
+            var ssdpQuery = GetSSDPQuery(seconds, port, filter);
             var reqBuff = Encoding.UTF8.GetBytes(ssdpQuery);
 
             try
@@ -106,7 +111,7 @@ namespace LagoVista.Core.UWP.Services
                 if (_readerSocket != null)
                     _readerSocket.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogException("SSDPFinder.QueryAsync - Close Existing Socket", ex);
             }
@@ -135,7 +140,7 @@ namespace LagoVista.Core.UWP.Services
 
             _readerSocket.JoinMulticastGroup(remoteIP);
 
-            using (var stream = await _readerSocket.GetOutputStreamAsync(remoteIP, SSDP_PORT))
+            using (var stream = await _readerSocket.GetOutputStreamAsync(remoteIP, _ssdpPort.ToString()))
             {
                 await stream.WriteAsync(reqBuff.AsBuffer());
             }
