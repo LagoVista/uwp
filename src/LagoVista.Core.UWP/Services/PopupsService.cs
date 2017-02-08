@@ -28,6 +28,21 @@ namespace LagoVista.Core.UWP.Services
             }
         }
 
+        public Task<double?> PromptForDoubleAsync(string label, double? defaultvalue = default(double?), string help = "", bool isRequired = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int?> PromptForIntAsync(string label, int? defaultvalue = default(int?), string help = "", bool isRequired = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> PromptForStringAsync(string label, string defaultvalue = null, string help = "", bool isRequired = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task ShowAsync(string message)
         {
             try
@@ -52,6 +67,16 @@ namespace LagoVista.Core.UWP.Services
             {
 
             }
+        }
+
+        public Task<string> ShowOpenFileAsync(string fileMask = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> ShowSaveFileAsync(string fileMask = "", string defaultFileName = "")
+        {
+            throw new NotImplementedException();
         }
     }
 }

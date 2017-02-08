@@ -17,7 +17,11 @@ namespace LagoVista.Core.UWP.Services
             SLWIOC.Register<INetworkService>(new NetworkService());
             SLWIOC.Register<IImaging>(new Imaging());
             SLWIOC.Register<IBindingHelper>(new BindingHelper());
-            SLWIOC.Register<ISSDPFinder>(new SSDPFinder());
+            SLWIOC.Register<ISSDPClient>(new SSDPClient());
+            SLWIOC.Register<IWebServer>(new WebServer());
+            SLWIOC.Register<ISSDPClient>(typeof(SSDPClient));
+            SLWIOC.Register<IWebServer>(typeof(WebServer));
+            SLWIOC.Register<ISSDPServer>(new SSDPServer());
             SLWIOC.Register<ITimerFactory>(new TimerFactory());
             SLWIOC.Register<IDirectoryServices>(new DirectoryServices());
         }

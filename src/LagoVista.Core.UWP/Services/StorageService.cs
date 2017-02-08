@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.Foundation.Collections;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace LagoVista.Core.UWP.Services
 {
@@ -212,6 +213,51 @@ namespace LagoVista.Core.UWP.Services
                 Debug.WriteLine("EXCEPTION SAVING SETTINGS: " + ex.Message);
                 Debug.WriteLine(ex.StackTrace);
             }
+        }
+
+        public Task<string> StoreAsync(Stream stream, string fileName, Locations location = Locations.Default, string folder = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Stream> Get(string fileName, Locations location = Locations.Default, string folder = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<string> IStorageService.StoreAsync<TObject>(TObject instance, string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> ReadAllTextAsync(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> WriteAllTextAsync(string fileName, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<string>> ReadAllLinesAsync(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> WriteAllLinesAsync(string fileName, List<string> text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<byte[]> ReadAllBytesAsync(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> WriteAllBytesAsync(string fileName, byte[] buffer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

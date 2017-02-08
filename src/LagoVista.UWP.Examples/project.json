@@ -3,7 +3,6 @@
     "LagoVista.Core": "0.8.69-alpha00654",
     "LagoVista.Core.Authentication": "0.8.69-alpha00654",
     "LagoVista.Core.Networking": "0.8.69-alpha00654",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {

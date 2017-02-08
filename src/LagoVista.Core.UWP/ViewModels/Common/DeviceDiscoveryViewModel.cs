@@ -10,14 +10,14 @@ namespace LagoVista.Core.UWP.ViewModels.Common
 {
     public class DeviceDiscoveryViewModel : ViewModelBase
     {
-        private Services.SSDPFinder _finder;
+        private Services.SSDPClient _finder;
         private ObservableCollection<uPnPDevice> _devices = new ObservableCollection<uPnPDevice>();
         private List<String> _rootDevicesSoFar = new List<string>();
 
 
         public async override Task InitAsync()
         {
-            _finder = new Services.SSDPFinder();
+            _finder = new Services.SSDPClient();
             _finder.NewDeviceFound += _finder_NewDeviceFound;
 
             await Task.Delay(1);

@@ -179,7 +179,6 @@ namespace LagoVista.UWP.UI
                 if (vm != null)
                 {
                     vm.PropertyChanged += Vm_PropertyChanged;
-                    vm.DispatcherServices = new DispatcherServices(this.Dispatcher);
                     await PerformNetworkOperation(async () =>
                     {
                         vm.SetParameter(e.Parameter);
@@ -194,7 +193,6 @@ namespace LagoVista.UWP.UI
                         vm = Activator.CreateInstance(args.ViewModelType) as ViewModelBase;
                         vm.ViewModelNavigation = Navigation.Instance;
                         vm.PropertyChanged += Vm_PropertyChanged;
-                        vm.DispatcherServices = new DispatcherServices(this.Dispatcher);
                         await PerformNetworkOperation(async () =>
                         {
                             vm.SetParameter(args.Parameter);

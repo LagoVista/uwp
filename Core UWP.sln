@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWP UI", "src\LagoVista.UWP.UI\UWP UI.csproj", "{67943818-34FA-44B0-B5AA-DF7761B980B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LagoVista.UWP.Examples", "src\LagoVista.UWP.Examples\LagoVista.UWP.Examples.csproj", "{9C466F41-2DED-4714-A83C-520776C945A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,26 @@ Global
 		{67943818-34FA-44B0-B5AA-DF7761B980B8}.Release|x64.Build.0 = Release|x64
 		{67943818-34FA-44B0-B5AA-DF7761B980B8}.Release|x86.ActiveCfg = Release|x86
 		{67943818-34FA-44B0-B5AA-DF7761B980B8}.Release|x86.Build.0 = Release|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|ARM.Build.0 = Debug|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|ARM.Deploy.0 = Debug|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x64.ActiveCfg = Debug|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x64.Build.0 = Debug|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x64.Deploy.0 = Debug|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x86.ActiveCfg = Debug|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x86.Build.0 = Debug|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Debug|x86.Deploy.0 = Debug|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|Any CPU.ActiveCfg = Release|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|ARM.ActiveCfg = Release|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|ARM.Build.0 = Release|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|ARM.Deploy.0 = Release|ARM
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x64.ActiveCfg = Release|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x64.Build.0 = Release|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x64.Deploy.0 = Release|x64
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x86.ActiveCfg = Release|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x86.Build.0 = Release|x86
+		{9C466F41-2DED-4714-A83C-520776C945A0}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

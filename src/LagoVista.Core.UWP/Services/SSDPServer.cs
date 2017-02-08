@@ -10,25 +10,18 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Streams;
 using Windows.Networking;
 using LagoVista.Core.ServiceCommon;
+using LagoVista.Core.Networking.Models;
+using LagoVista.Core.PlatformSupport;
+using LagoVista.Core.Networking.Interfaces;
+using System.Xml.Linq;
+using Windows.Data.Xml.Dom;
 
 namespace LagoVista.Core.UWP.Services
 {
-    public class SSDPDiscoveryConfiguration
-    {
-        public string DeviceType { get; set; }
-        public string FriendlyName { get; set; }
-        public string Manufacture { get; set; }
-        public string ManufactureUrl { get; set; }
-        public string ModelDescription { get; set; }
-        public string ModelName { get; set; }
-        public string ModelNumber { get; set; }
-        public string ModelUrl { get; set; }
-        public string SerialNumber { get; set; }
-    }
 
-    public class SSDPDiscovery : ServiceBase
+    public class SSDPServer : ServiceBase, ISSDPServer
     {
-        SSDPDiscoveryConfiguration _config;
+        UPNPConfiguration _config;
 
         private const uint BUFFER_SIZE = 8192;
 
@@ -84,13 +77,14 @@ Path not found.
 
 </html>";
 
-        public SSDPDiscovery()
+        public SSDPServer()
         {
             _udn = (string)Windows.Storage.ApplicationData.Current.LocalSettings.Values["UDN"];
             if (String.IsNullOrEmpty(_udn))
+            {
                 _udn = Guid.NewGuid().ToString();
-
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values["UDN"] = _udn;
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["UDN"] = _udn;
+            }
 
             _ssdpDiscoveryListener = new DatagramSocket();
             _ssdpDiscoveryListener.MessageReceived += _socket_MessageReceived;
@@ -101,6 +95,11 @@ Path not found.
 
         private void _ssdpDiscoveryListener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
+        }
+
+        public ILogger Logger
+        {
+            get; set;
         }
 
         private async Task SendDeviceInfo(HostName ip, String port, IOutputStream outputStream, DatagramSocket originalSocket)
@@ -143,7 +142,7 @@ Path not found.
         }
 
 
-        public async void MakeDiscoverable(int metaDataPort, SSDPDiscoveryConfiguration config)
+        public async void MakeDiscoverable(int metaDataPort, UPNPConfiguration config)
         {
             _config = config;
 
@@ -203,7 +202,7 @@ Path not found.
             }
 
             var rootDirectory = path.ToLower().Split('/');
-            if(rootDirectory.Length == 0)
+            if (rootDirectory.Length == 0)
             {
                 await WriteResponseAsync(socket, "text/html", 200, DefaultPage);
                 return;
@@ -221,7 +220,8 @@ Path not found.
 
         private String GetDeviceProps()
         {
-            String _deviceXML =
+            //HACK Should really use an XML Builder w/ namespaces....
+            var deviceXML =
           @"<?xml version=""1.0""?>
 <root xmlns=""urn:schemas-upnp-org:device-1-0"" >
     <specVersion >
@@ -240,26 +240,28 @@ Path not found.
      <modelURL>" + _config.ModelUrl + @"</modelURL>
      <serialNumber>" + _config.SerialNumber + @"</serialNumber>
      <UDN>uuid:" + _udn + @"</UDN>
-     <serviceList>
-        <service>
-            <serviceType>urn:schemas-upnp-org:service:Dimming:1</serviceType>
-            <serviceId>urn:upnp-org:serviceId:Dimming.0001</serviceId>
-            <SCPDURL>_urn-upnp-org-serviceId-Dimming.0001_scpd.xml</SCPDURL>
-            <controlURL>_urn-upnp-org-serviceId-Dimming.0001_control</controlURL>
-            <eventSubURL>_urn-upnp-org-serviceId-Dimming.0001_event</eventSubURL>
-        </service>
-        <service>
-            <serviceType>urn:schemas-upnp-org:service:SwitchPower:1</serviceType>
-            <serviceId>urn:upnp-org:serviceId:SwitchPower.0001</serviceId>
-            <SCPDURL>_urn-upnp-org-serviceId-SwitchPower.0001_scpd.xml</SCPDURL>
-            <controlURL>_urn-upnp-org-serviceId-SwitchPower.0001_control</controlURL>
-            <eventSubURL>_urn-upnp-org-serviceId-SwitchPower.0001_event</eventSubURL>
-        </service>
-    </serviceList>
+     <serviceList>";
+            foreach (var srvc in _config.Services)
+            {
+                deviceXML += "<service>";
+                deviceXML += $"<serviceType>{srvc.ServiceType}</serviceType>";
+                deviceXML += $"<serviceId>{srvc.ServiceId}</serviceId>";
+                //_deviceXML += $"<SCPDURL>{srvc.Sc</SCPDURL>";
+                deviceXML += $"<controlURL>{srvc.ControlUrl}</controlURL>";
+                deviceXML += $"<eventSubURL>{srvc.EventUrl}</eventSubURL>";
+                deviceXML += "</service>";
+            }
+
+            deviceXML += @"</serviceList>
  </device>
 </root>";
 
-            return _deviceXML;
+            return deviceXML;
+        }
+
+        public void RegisterAPIHandler(IApiHandler handler)
+        {
+
         }
     }
 }

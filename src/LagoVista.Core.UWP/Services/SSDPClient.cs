@@ -18,7 +18,7 @@ using LagoVista.Core.Networking.Models;
 
 namespace LagoVista.Core.UWP.Services
 {
-    public class SSDPFinder : ServiceBase, ISSDPFinder
+    public class SSDPClient : ServiceBase, ISSDPClient
     {
         DatagramSocket _readerSocket;
 
@@ -64,6 +64,11 @@ namespace LagoVista.Core.UWP.Services
             }
             else
                 return null;
+        }
+
+        public ILogger Logger
+        {
+            get; set;
         }
 
         /* Handle the SSDP Header, primary task is to download location of the XML document used to get more info */
