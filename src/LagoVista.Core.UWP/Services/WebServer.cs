@@ -12,7 +12,7 @@ using LagoVista.Core.Networking.Interfaces;
 
 namespace LagoVista.Core.UWP.Services
 {
-    public class WebServer : ServiceBase, IDisposable
+    public class WebServer : ServiceBase, IWebServer, IDisposable
     {
         private const uint BUFFER_SIZE = 16384;
         private readonly StreamSocketListener _streamSocketListener;
@@ -75,7 +75,8 @@ namespace LagoVista.Core.UWP.Services
                     {
                         var response = message.GetResponseMessage();
                         response.ContentType = "text/html";
-                        response.Content = "<html><head><title>LagoVista IoT Home Automation and Devices Framewroks</title></head><body>Web Server Not Implemented</body></html>";
+
+                        response.Content = @"<html><head><title>LagoVista IoT Home Automation and Devices Framewroks</title><link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"" integrity=""sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"" crossorigin=""anonymous""></head><body><h1>Web Server Not Implemented</h1></body></html>";
                         await response.Send();
                     }
                 }

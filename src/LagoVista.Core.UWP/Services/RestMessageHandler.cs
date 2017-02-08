@@ -4,6 +4,7 @@ using LagoVista.Core.PlatformSupport;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -31,6 +32,8 @@ namespace LagoVista.Core.UWP.Services
                 {
                     var route = msg.Path.ToLower();
                     String methodRouteName = "/" + method.Name.ToLower();
+
+                    Debug.WriteLine(methodRouteName + " " + msg.Path);
 
                     List<Object> _argValues = new List<Object>();
                     _argValues.Add(msg);
@@ -99,7 +102,16 @@ namespace LagoVista.Core.UWP.Services
                                     _argValues.Count == methodParameters.Count() - 1)
                                 {
                                     var contentArgType = methodParameters.Last();
-                                    _argValues.Add(JsonConvert.DeserializeObject(msg.Body, contentArgType.ParameterType));
+                                    try
+                                    {
+                                        _argValues.Add(JsonConvert.DeserializeObject(msg.Body, contentArgType.ParameterType));
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        Debug.WriteLine(ex.Message);
+                                        route = String.Empty;
+                                        continue;
+                                    }
                                 }
 
                                 if (_argValues.Count != methodParameters.Count())

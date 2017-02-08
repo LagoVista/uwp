@@ -204,17 +204,17 @@ Path not found.
             var rootDirectory = path.ToLower().Split('/');
             if (rootDirectory.Length == 0)
             {
-                await WriteResponseAsync(socket, "text/html", 200, DefaultPage);
+                await WriteResponseAsync(socket, "text/html", 200, String.IsNullOrEmpty(_config.DefaultPageHtml) ?  DefaultPage : _config.DefaultPageHtml);
                 return;
             }
 
             if (!await HandleRequestAsync(socket, path))
-                await WriteResponseAsync(socket, "text/html", 200, DefaultPage);
+                await WriteResponseAsync(socket, "text/html", 200, String.IsNullOrEmpty(_config.DefaultPageHtml) ? DefaultPage : _config.DefaultPageHtml);
         }
 
         public virtual async Task<bool> HandleRequestAsync(StreamSocket socket, string path)
         {
-            await WriteResponseAsync(socket, "text/html", 200, DefaultPage);
+            await WriteResponseAsync(socket, "text/html", 200, String.IsNullOrEmpty(_config.DefaultPageHtml) ? DefaultPage : _config.DefaultPageHtml);
             return true;
         }
 

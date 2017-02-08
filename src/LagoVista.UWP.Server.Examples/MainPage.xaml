@@ -9,8 +9,9 @@
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <Button Content="Start Listening" Command="{Binding StartSSDPServerCommand}" Width="200" Height="40" />
+        <StackPanel Margin="20,20,0,0">
+            <Button Content="Start SSDP Listener" Command="{Binding StartSSDPServerCommand}" Width="200" Height="40" />
+            <Button Content="Start API Server" Command="{Binding StartAPIServerCommand}" Width="200" Height="40" />
         </StackPanel>
     </Grid>
 </Page>

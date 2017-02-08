@@ -8,8 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
+        <StackPanel Margin="20,20,0,0">
             <Button Content="Start Discovery" Command="{Binding StartSSDPDiscoveryCommand}" Width="200" Height="40" />
+            <Button Content="Get Serial Ports" Command="{Binding GetSerialPortsCommand}" Width="200" Height="40" />
+            <ListBox ItemsSource="{Binding SerialPorts}" SelectedItem="{Binding SelectedSerialPort, Mode=TwoWay}" Height="200" Width="200"  HorizontalAlignment="Left">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Open Port" Command="{Binding OpenPortCommand}" Width="200" Height="40" />
         </StackPanel>
     </Grid>
 </Page>
