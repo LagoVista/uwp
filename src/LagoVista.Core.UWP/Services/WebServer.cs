@@ -76,13 +76,19 @@ namespace LagoVista.Core.UWP.Services
                         var response = message.GetResponseMessage();
                         response.ContentType = "text/html";
 
-                        response.Content = @"<html><head><title>LagoVista IoT Home Automation and Devices Framewroks</title><link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"" integrity=""sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"" crossorigin=""anonymous""></head><body><h1>Web Server Not Implemented</h1></body></html>";
+                        response.Content = DefaultPageHtml;
                         await response.Send();
                     }
                 }
             }
         }
 
+        private string _defaultPageContent = @"<html><head><title>LagoVista IoT Home Automation and Devices Framewroks</title><link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"" integrity=""sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"" crossorigin=""anonymous""></head><body><h1>Default Page</h1><p>You can replace this by providing your custom html to the DefaultPageHtml property on the web server you created.</p></body></html>";
+        public string DefaultPageHtml
+        {
+            get { return _defaultPageContent; }
+            set { _defaultPageContent = value; }
+        }
 
         protected virtual Task<bool> OnMessageArrived(HttpRequestMessage msg)
         {
