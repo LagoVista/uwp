@@ -2,13 +2,13 @@
 <package>
   <metadata>
     <id>LagoVista.Core.UWP</id>
-    <version>0.8.154-alpha00347</version>
+    <version>0.8.154-alpha00612</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>http://www.lagovista-iot.com/opensource</projectUrl>
     <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
-    <description>Core Functionality to build Windows 10 Apps on the LagoVista IoT and Devices Framework.</description>
+    <description>Core Functionality to build Windows 10 Apps on the LagoVista Devices, IoT and Home Automation Framework.</description>
     <releaseNotes>Initial Release</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>HomeAutomation IoT UWP</tags>

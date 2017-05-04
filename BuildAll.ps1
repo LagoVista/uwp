@@ -1,7 +1,6 @@
 $scriptPath = Split-Path $MyInvocation.MyCommand.Path
 Set-Location $scriptPath
-
-& ${env:ProgramFiles(x86)}\MSBuild\15.0\Bin\MSBuild /property:Configuration=Release /property:Platform=x86
-& ${env:ProgramFiles(x86)}\MSBuild\15.0\Bin\MSBuild /property:Configuration=Release /property:Platform=x64
-& ${env:ProgramFiles(x86)}\MSBuild\15.0\Bin\MSBuild /property:Configuration=Release /property:Platform=ARM
-& ${env:ProgramFiles(x86)}\MSBuild\15.0\Bin\MSBuild /property:Configuration=Release 
+dotnet build --configuration release --runtime x86
+dotnet build --configuration release --runtime x64
+dotnet build --configuration release --runtime ARM
+dotnet build --configuration release --runtime Release 

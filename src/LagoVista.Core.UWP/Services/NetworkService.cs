@@ -9,6 +9,9 @@ using Windows.Networking.Connectivity;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using LagoVista.Core.Models;
+using LagoVista.Core.UWP.Networking;
+using Windows.Networking;
+using Windows.ApplicationModel.Resources;
 
 namespace LagoVista.Core.UWP.Services
 {
@@ -47,23 +50,26 @@ namespace LagoVista.Core.UWP.Services
         public string GetIPV4Address()
         {
             var icp = NetworkInformation.GetInternetConnectionProfile();
+            if (icp != null && icp.NetworkAdapter != null && icp.NetworkAdapter.NetworkAdapterId != null)
+            {
+                var name = icp.ProfileName;
 
-            var settings = icp.GetNetworkConnectivityLevel();
+                var hostnames = NetworkInformation.GetHostNames();
 
-            if (icp?.NetworkAdapter == null) return null;
-            var hostnames =
-                NetworkInformation.GetHostNames().Where(
-                        hn =>
-                            hn.IPInformation?.NetworkAdapter != null && hn.IPInformation.NetworkAdapter.NetworkAdapterId
-                            == icp.NetworkAdapter.NetworkAdapterId);
+                foreach (var hn in hostnames)
+                {
+                    if (hn.IPInformation != null &&
+                        hn.IPInformation.NetworkAdapter != null &&
+                        hn.IPInformation.NetworkAdapter.NetworkAdapterId != null &&
+                        hn.IPInformation.NetworkAdapter.NetworkAdapterId == icp.NetworkAdapter.NetworkAdapterId &&
+                        hn.Type == HostNameType.Ipv4)
+                    {
+                        return hn.CanonicalName;
+                    }
+                }
+            }
 
-            var ipV4hostName = hostnames.Where(hst => hst.Type == Windows.Networking.HostNameType.Ipv4).FirstOrDefault();
-
-
-            if (ipV4hostName != null)
-                return ipV4hostName.CanonicalName;
-            else
-                return String.Empty;
+            return "-";
         }
 
         private async void PopulateNetworks()
@@ -80,10 +86,10 @@ namespace LagoVista.Core.UWP.Services
             var connections = new List<NetworkDetails>();
 
             var icp = NetworkInformation.GetInternetConnectionProfile();
-            var settings = icp.GetNetworkConnectivityLevel();
-
+            
             if (icp != null && icp.NetworkAdapter != null)
             {
+                var settings = icp.GetNetworkConnectivityLevel();
                 var hostnames =
                     NetworkInformation.GetHostNames().Where(
                             hn =>
