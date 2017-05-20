@@ -21,7 +21,7 @@ namespace LagoVista.Core.UWP.Networking
             if (icp != null)
                 return icp.ProfileName;
      
-            return ResourceLoader.GetForCurrentView().GetString("NoInternetConnection");
+            return "No Internet Connection";
         }
 
         public static string GetCurrentIpv4Address()
@@ -45,8 +45,9 @@ namespace LagoVista.Core.UWP.Networking
                     }
                 }
             }
-            
-            return ResourceLoader.GetForCurrentView().GetString("NoInternetConnection");
+
+
+            return "-";
         }
 
         public static async Task<IList<NetworkInfo>> GetNetworkInformation()
@@ -75,7 +76,7 @@ namespace LagoVista.Core.UWP.Networking
                                 info.NetworkName = profile.ProfileName;
 
                             var statusTag = profile.GetNetworkConnectivityLevel().ToString();
-                            info.NetworkStatus = resourceLoader.GetString("NetworkConnectivityLevel_" + statusTag);
+                            info.NetworkStatus = "Network Type:" + statusTag;
                         }
 
                         if (hostName.Type == HostNameType.Ipv4)
