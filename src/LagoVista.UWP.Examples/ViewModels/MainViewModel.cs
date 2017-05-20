@@ -28,7 +28,7 @@ namespace LagoVista.UWP.Examples.ViewModels
             _client = NetworkServices.CreateSSDPClient();
             _client.ShowDiagnostics = true;
             _client.NewDeviceFound += _client_NewDeviceFound;
-            _client.SsdpQueryAsync(port: 1901);
+            _client.SsdpQueryAsync(port: 1900);
         }
 
         public async void GetSerialPorts()

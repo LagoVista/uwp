@@ -2,7 +2,7 @@ $scriptPath = Split-Path $MyInvocation.MyCommand.Path
 
 Set-Location $scriptPath
 
-. ./BuildAll.ps1
+#. ./BuildAll.ps1
 
 . ./UpdateNuspecVersion.ps1 -preRelease alpha -major 0 -minor 8
 

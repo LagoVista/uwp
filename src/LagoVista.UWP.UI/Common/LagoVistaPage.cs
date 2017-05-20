@@ -135,9 +135,6 @@ namespace LagoVista.UWP.UI
                     Content = contentContainer;
 
                     var vm = DataContext as ViewModelBase;
-                    if (vm != null)
-                        vm.ViewModelNavigation = Navigation.Instance;
-
                     SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Navigation.Instance.CanGoBack() ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
                 }
             }
@@ -191,7 +188,6 @@ namespace LagoVista.UWP.UI
                     {
                         var args = e.Parameter as ViewModelLaunchArgs;
                         vm = Activator.CreateInstance(args.ViewModelType) as ViewModelBase;
-                        vm.ViewModelNavigation = Navigation.Instance;
                         vm.PropertyChanged += Vm_PropertyChanged;
                         await PerformNetworkOperation(async () =>
                         {

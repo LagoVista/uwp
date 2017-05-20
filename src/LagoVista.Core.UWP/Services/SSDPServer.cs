@@ -19,7 +19,7 @@ using Windows.Data.Xml.Dom;
 namespace LagoVista.Core.UWP.Services
 {
 
-    public class SSDPServer : ServiceBase, ISSDPServer
+    public class SSDPServer : ServiceBase, ISSDPServer, IDisposable
     {
         UPNPConfiguration _config;
 
@@ -28,8 +28,8 @@ namespace LagoVista.Core.UWP.Services
         private String _udn;
         private int _metaDataPort;
 
-        private readonly DatagramSocket _ssdpDiscoveryListener;
-        private readonly StreamSocketListener _webListener;
+        private DatagramSocket _ssdpDiscoveryListener;
+        private StreamSocketListener _webListener;
 
         private String GetDiscoveryPayload()
         {
@@ -85,16 +85,21 @@ Path not found.
                 _udn = Guid.NewGuid().ToString();
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["UDN"] = _udn;
             }
-
-            _ssdpDiscoveryListener = new DatagramSocket();
-            _ssdpDiscoveryListener.MessageReceived += _socket_MessageReceived;
-
-            _webListener = new StreamSocketListener();
-            _webListener.ConnectionReceived += ProcessRequestAsync;
         }
 
-        private void _ssdpDiscoveryListener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
+        public void StopListening()
         {
+            if (_ssdpDiscoveryListener != null)
+            {
+                _ssdpDiscoveryListener.Dispose();
+                _ssdpDiscoveryListener = null;
+            }
+
+            if(_webListener != null)
+            {
+                _webListener.Dispose();
+                _webListener = null;
+            }
         }
 
         public ILogger Logger
@@ -142,14 +147,44 @@ Path not found.
         }
 
 
-        public async void MakeDiscoverable(int metaDataPort, UPNPConfiguration config)
+        public async Task MakeDiscoverableAsync(int metaDataPort, UPNPConfiguration config)
         {
+            _ssdpDiscoveryListener = new DatagramSocket();
+            _ssdpDiscoveryListener.MessageReceived += _socket_MessageReceived;
+
+            _webListener = new StreamSocketListener();
+            _webListener.ConnectionReceived += ProcessRequestAsync;
+
             _config = config;
 
             _metaDataPort = metaDataPort;
-            await _webListener.BindServiceNameAsync(metaDataPort.ToString());
-            await _ssdpDiscoveryListener.BindEndpointAsync(null, _config.UdpListnerPort.ToString());
-            _ssdpDiscoveryListener.JoinMulticastGroup(new HostName("239.255.255.250"));
+
+            try
+            {
+                await _webListener.BindServiceNameAsync(metaDataPort.ToString());
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Attempt to start Web Listener Failed on Port: " + metaDataPort.ToString(), ex);
+            }
+
+            try
+            {
+                await _ssdpDiscoveryListener.BindEndpointAsync(null, _config.UdpListnerPort.ToString());
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Attempt to SSDP Listener Failed on Port: " + _config.UdpListnerPort.ToString() , ex);
+            }
+
+            try
+            {
+                _ssdpDiscoveryListener.JoinMulticastGroup(new HostName("239.255.255.250"));
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Attempt to Join Multi Cast Group Failed", ex);
+            }
         }
 
         private async void ProcessRequestAsync(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
@@ -204,7 +239,7 @@ Path not found.
             var rootDirectory = path.ToLower().Split('/');
             if (rootDirectory.Length == 0)
             {
-                await WriteResponseAsync(socket, "text/html", 200, String.IsNullOrEmpty(_config.DefaultPageHtml) ?  DefaultPage : _config.DefaultPageHtml);
+                await WriteResponseAsync(socket, "text/html", 200, String.IsNullOrEmpty(_config.DefaultPageHtml) ? DefaultPage : _config.DefaultPageHtml);
                 return;
             }
 
@@ -262,6 +297,16 @@ Path not found.
         public void RegisterAPIHandler(IApiHandler handler)
         {
 
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MakeDiscoverable(int metaDataPort, UPNPConfiguration config)
+        {
+            throw new NotImplementedException();
         }
     }
 }

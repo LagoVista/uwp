@@ -135,7 +135,9 @@ namespace LagoVista.Core.UWP.Services
                 });
             };
 
-            await _readerSocket.BindEndpointAsync(null, "");
+            var ipAddress = PlatformSupport.Services.Network.GetIPV4Address();
+            var hostName = new Windows.Networking.HostName(ipAddress);
+            await _readerSocket.BindEndpointAsync(hostName, "");
             Core.PlatformSupport.Services.Logger.Log(LogLevel.Message, "SSDPFinder.QueryAsync", _readerSocket.Information.LocalAddress + " " + _readerSocket.Information.LocalPort);
 
             _readerSocket.JoinMulticastGroup(remoteIP);

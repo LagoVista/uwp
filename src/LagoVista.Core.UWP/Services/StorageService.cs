@@ -115,7 +115,13 @@ namespace LagoVista.Core.UWP.Services
             await LoadSettingsIfRequired();
 
             if (AppSettings.ContainsKey(key))
-                return AppSettings[key] as T;
+            {
+                var json = AppSettings[key] as string;
+                if (!String.IsNullOrEmpty(json))
+                {
+                    return JsonConvert.DeserializeObject<T>(json);
+                }
+            }
 
             return defaultValue;
         }
@@ -204,7 +210,7 @@ namespace LagoVista.Core.UWP.Services
             {
                 await LoadSettingsIfRequired();
 
-                AppSettings[key] = value;
+                AppSettings[key] = JsonConvert.SerializeObject(value);
 
                 await SaveSettingsIfRequired();
             }
