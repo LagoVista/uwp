@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
-    "LagoVista.Core": "0.8.169-alpha01144",
-    "LagoVista.Core.Networking": "0.8.169-alpha01144",
+    "LagoVista.Core": "0.8.176-alpha1628",
+    "LagoVista.Core.Networking": "0.8.176-alpha1628",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
     "Newtonsoft.Json": "10.0.2"
   },

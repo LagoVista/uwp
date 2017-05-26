@@ -72,10 +72,18 @@ namespace LagoVista.Core.UWP.ViewModels.Common
             SetupEthernet();
             await SetupWifi();
         }
+       
 
-        public override void Init()
+        public override Task InitAsync()
         {
             RefreshNetworkDisplay();
+            return base.InitAsync();
+        }
+
+        public override Task ReloadedAsync()
+        {
+            RefreshNetworkDisplay();
+            return base.ReloadedAsync();
         }
 
         private void NetworkInformation_NetworkStatusChanged(object sender)

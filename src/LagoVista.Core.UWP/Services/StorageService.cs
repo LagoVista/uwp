@@ -173,7 +173,8 @@ namespace LagoVista.Core.UWP.Services
             return new Uri(storageFile.Path);
         }
 
-        public async Task StoreAsync<TObject>(TObject instance, string fileName) where TObject : class
+        //TODO: Need to figure out why we are returning a string.
+        public async Task<string> StoreAsync<TObject>(TObject instance, string fileName) where TObject : class
         {
             var json = JsonConvert.SerializeObject(instance);
             var outputFolder = IsIoT ? Windows.Storage.ApplicationData.Current.LocalFolder : Windows.Storage.ApplicationData.Current.RoamingFolder;
@@ -182,6 +183,7 @@ namespace LagoVista.Core.UWP.Services
             {
                 var file = await outputFolder.GetFileAsync(fileName);
                 await file.DeleteAsync();
+                
             }
             catch (Exception)
             {
@@ -195,6 +197,7 @@ namespace LagoVista.Core.UWP.Services
                 {
                     var buffer = json.ToUTF8ByteArray();
                     await outputStream.WriteAsync(buffer, 0, buffer.Length);
+                    return outputFile.Name;
                 }
             }
             catch (Exception ex)
@@ -202,6 +205,8 @@ namespace LagoVista.Core.UWP.Services
                 Debug.WriteLine("EXCEPTION SAVING SETTINGS: " + ex.Message);
                 Debug.WriteLine(ex.StackTrace);
             }
+
+            return null;
         }
 
         public async Task StoreKVP<T>(string key, T value) where T : class
@@ -230,11 +235,7 @@ namespace LagoVista.Core.UWP.Services
         {
             throw new NotImplementedException();
         }
-
-        Task<string> IStorageService.StoreAsync<TObject>(TObject instance, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<string> ReadAllTextAsync(string fileName)
         {
