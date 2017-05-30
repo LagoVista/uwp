@@ -120,6 +120,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Networking\TCPClient.cs" />
     <Compile Include="Networking\WiFiNetwork.cs" />
     <Compile Include="Networking\NetworkBase.cs" />
     <Compile Include="Networking\WiFiNetworks.cs" />
@@ -153,6 +154,12 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Views\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Simulator\src\LagoVista.Client.Core\LagoVista.Client.Core.csproj">
+      <Project>{786a2d0b-c3e4-4d7a-89c5-86ebc94e1b45}</Project>
+      <Name>LagoVista.Client.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
