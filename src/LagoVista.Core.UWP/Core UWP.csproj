@@ -120,81 +120,107 @@
     <None Include="project.json" />
     <Content Include="Resources\Fonts\iconize-entypoplus.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-entypoplus.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-fontawesome.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-fontawesome.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-ionicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-ionicons.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-material.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-material.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-meteocons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-meteocons.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-simplelineicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-simplelineicons.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-typicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-typicons.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\iconize-weathericons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\iconize-weathericons.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Black.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-BlackItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-BlackItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Bold.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-BoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-BoldItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Italic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Italic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Light.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Light.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-LightItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-LightItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Medium.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-MediumItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-MediumItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Regular.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-Thin.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-Thin.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\Roboto-ThinItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\Roboto-ThinItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-Bold.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-BoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-BoldItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-Italic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-Italic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-Light.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-Light.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-LightItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-LightItalic.ttf</Link>
     </Content>
     <Content Include="Resources\Fonts\RobotoCondensed-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\Fonts\RobotoCondensed-Regular.ttf</Link>
     </Content>
   </ItemGroup>
   <ItemGroup>

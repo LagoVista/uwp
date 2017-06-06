@@ -10,11 +10,9 @@ namespace LagoVista.Core.UWP
     {
         public static void Init(Windows.UI.Xaml.Application app, CoreDispatcher dispatcher)
         {
-
             SLWIOC.RegisterSingleton<IDispatcherServices>(new DispatcherServices(dispatcher));
             SLWIOC.RegisterSingleton<IStorageService>(new StorageService());
             SLWIOC.RegisterSingleton<IPopupServices>(new PopupsService());
-            SLWIOC.RegisterSingleton<ILogger>(new Logger());
 
             SLWIOC.RegisterSingleton<IDeviceManager>(new DeviceManager());
 
