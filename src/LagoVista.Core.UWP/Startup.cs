@@ -8,8 +8,9 @@ namespace LagoVista.Core.UWP
 {
     public static class Startup
     {
-        public static void Init(Windows.UI.Xaml.Application app, CoreDispatcher dispatcher)
+        public static void Init(Windows.UI.Xaml.Application app, CoreDispatcher dispatcher, string key)
         {
+            SLWIOC.RegisterSingleton<ILogger>(new Loggers.MobileCenterLogger(key));
             SLWIOC.RegisterSingleton<IDispatcherServices>(new DispatcherServices(dispatcher));
             SLWIOC.RegisterSingleton<IStorageService>(new StorageService());
             SLWIOC.RegisterSingleton<IPopupServices>(new PopupsService());
