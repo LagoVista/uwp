@@ -1,5 +1,5 @@
 ﻿
-using LagoVista.XPlat.Core.Icons;
+using LagoVista.Client.Core.Icons;
 
 namespace LagoVista.Core.UWP.IconFonts
 {

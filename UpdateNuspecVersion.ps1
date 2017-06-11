@@ -5,7 +5,7 @@ foreach( $child in $children)
     $nuspecFile = gi $child.fullName
     [xml] $content = Get-Content $nuspecFile
     $end = Get-Date
-    $start = Get-Date "12/1/2016"
+    $start = Get-Date "5/17/2017"
 
     $today = Get-Date
     $today = $today.ToShortDateString()

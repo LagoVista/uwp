@@ -47,10 +47,7 @@ namespace LagoVista.UWP.UI
                 viewType = _navDictionary[key];
             }
 
-            if (args.Parameter != null)
-                _rootFrame.Navigate(viewType, args);
-            else
-                _rootFrame.Navigate(viewType, args);
+            _rootFrame.Navigate(viewType, args);
         }
 
         public static Navigation Instance { get { return _instance; } }
@@ -64,12 +61,7 @@ namespace LagoVista.UWP.UI
         {
             return _rootFrame.CanGoBack;
         }
-
-        public void GoBack()
-        {
-            if (_rootFrame.CanGoBack)
-                _rootFrame.GoBack();
-        }
+        
 
         public void Navigate<T>() where T : ViewModelBase
         {
@@ -90,6 +82,56 @@ namespace LagoVista.UWP.UI
         }
 
         public void SetAsNewRoot<TViewModel>() where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAsync(ViewModelLaunchArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAsync<TViewModel>() where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndCreateAsync<TViewModel>(params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndCreateAsync<TViewModel>(object parent, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndEditAsync<TViewModel>(object parent, object child, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndEditAsync<TViewModel>(object parent, string id, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndEditAsync<TViewModel>(string id, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task NavigateAndPickAsync<TViewModel>(Action<object> selectedAction, Action cancelledAction = null, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetAsNewRootAsync<TViewModel>() where TViewModel : ViewModelBase
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task GoBackAsync()
         {
             throw new NotImplementedException();
         }

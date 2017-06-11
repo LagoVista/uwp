@@ -146,11 +146,11 @@ namespace LagoVista.UWP.UI
             var localViewModel = DataContext as ViewModelBase;
             if (localViewModel != null)
             {
-                if (await localViewModel.CanGoBack())
-                    Navigation.Instance.GoBack();
+                if (Navigation.Instance.CanGoBack())
+                    await Navigation.Instance.GoBackAsync();
             }
             else
-                Navigation.Instance.GoBack();
+                await Navigation.Instance.GoBackAsync();
         }
 
         public ViewModelBase ViewModel
@@ -191,7 +191,7 @@ namespace LagoVista.UWP.UI
                         vm.PropertyChanged += Vm_PropertyChanged;
                         await PerformNetworkOperation(async () =>
                         {
-                            vm.SetParameter(args.Parameter);
+                            //vm.SetParameter(args.Parameter);
                             await vm.InitAsync();
                         });
                         DataContext = vm;

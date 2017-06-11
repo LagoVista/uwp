@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>LagoVista.Client</id>
-    <version>0.8.180-alpha1316</version>
+    <id>LagoVista.Core.UWP</id>
+    <version>1.2.25-alpha1524</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>http://www.lagovista-iot.com/opensource</projectUrl>
+    <projectUrl>http://github.com/LagoVista</projectUrl>
     <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
-    <description>Network Client Functionality for Mobile Apps in the the LagoVista Devices, IoT and Home Automation Frameworks</description>
+    <description>Core Mobile Client Functionality for the LagoVista Devices, IoT and Home Automation Frameworks</description>
     <releaseNotes>Pre-release Software</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>HomeAutomation IoT LagoVista</tags>
@@ -17,6 +17,13 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\release\netstandard1.2\*.dll" target="lib\netstandard1.2" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="bin\ARM\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-arm\lib\uap10.0" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="bin\x64\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x64\lib\uap10.0" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.dll" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="bin\x86\Release\LagoVista.Core.UWP.pri" target="runtimes\win10-x86\lib\uap10.0" />
+    <file src="bin\Release\LagoVista.Core.UWP.dll" target="ref\uap10.0" />
+    <file src="bin\Release\Assets\Fonts\*.*" target="Assets\Fonts" />
   </files>
 </package>
