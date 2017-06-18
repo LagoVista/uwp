@@ -46,7 +46,7 @@ namespace LagoVista.Core.UWP.Loggers
             dictionary.Add("Area", area);
             dictionary.Add("UseId", String.IsNullOrEmpty(_userId) ? "UNKNOWN" : _userId);
             dictionary.Add("Type", "exception");
-            dictionary.Add("StackTrace", ex.StackTrace);
+            dictionary.Add("StackTrace", ex.StackTrace.Substring(0));
 
             if (_args != null)
             {
@@ -60,6 +60,7 @@ namespace LagoVista.Core.UWP.Loggers
             {
                 dictionary.Add(arg.Key, arg.Value);
             }
+
 
             Analytics.TrackEvent(ex.Message, dictionary);
         }
