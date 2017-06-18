@@ -67,73 +67,118 @@ namespace LagoVista.UWP.UI
         {
             Navigate(new ViewModelLaunchArgs()
             {
-                ViewModelType = typeof(T)
+                ViewModelType = typeof(T),
+                LaunchType = LaunchTypes.Other
             });
         }
-
-        public void PopToRoot()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetAsNewRoot()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetAsNewRoot<TViewModel>() where TViewModel : ViewModelBase
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Task NavigateAsync(ViewModelLaunchArgs args)
         {
-            throw new NotImplementedException();
+            Navigate(args);
+
+            return Task.FromResult(default(object));
         }
 
         public Task NavigateAsync<TViewModel>() where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            args.LaunchType = LaunchTypes.Other;
+            return NavigateAsync(args);
+
         }
 
-        public Task NavigateAndCreateAsync<TViewModel>(params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndCreateAsync<TViewModel>(params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach(var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+            args.LaunchType = LaunchTypes.Create;
+
+            return NavigateAsync(args);
         }
 
-        public Task NavigateAndCreateAsync<TViewModel>(object parent, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndCreateAsync<TViewModel>(object parent, params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach (var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+            args.Parent = parent;
+            args.LaunchType = LaunchTypes.Create;
+
+            return NavigateAsync(args);
         }
 
-        public Task NavigateAndEditAsync<TViewModel>(object parent, object child, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndEditAsync<TViewModel>(object parent, object child, params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach (var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+            args.Parent = parent;
+            args.Child = child;
+            args.LaunchType = LaunchTypes.Edit;
+
+            return NavigateAsync(args);
         }
 
-        public Task NavigateAndEditAsync<TViewModel>(object parent, string id, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndEditAsync<TViewModel>(object parent, string id, params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach (var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+            args.Parent = parent;
+            args.ChildId = id;
+            args.LaunchType = LaunchTypes.Edit;
+
+            return NavigateAsync(args);
         }
 
-        public Task NavigateAndEditAsync<TViewModel>(string id, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndEditAsync<TViewModel>(string id, params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach (var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+
+            args.ChildId = id;
+            args.LaunchType = LaunchTypes.Edit;
+
+            return NavigateAsync(args);
         }
 
-        public Task NavigateAndPickAsync<TViewModel>(Action<object> selectedAction, Action cancelledAction = null, params KeyValuePair<string, object>[] args) where TViewModel : ViewModelBase
+        public Task NavigateAndPickAsync<TViewModel>(Action<object> selectedAction, Action cancelledAction = null, params KeyValuePair<string, object>[] parms) where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            var args = new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel) };
+            foreach (var param in parms)
+            {
+                args.Parameters.Add(param.Key, param.Value);
+            }
+
+            args.SelectedAction = selectedAction;
+            args.CancelledAction = cancelledAction;
+            args.LaunchType = LaunchTypes.Picker;
+
+            return NavigateAsync(args);
         }
 
-        public Task SetAsNewRootAsync<TViewModel>() where TViewModel : ViewModelBase
+        public async Task SetAsNewRootAsync<TViewModel>() where TViewModel : ViewModelBase
         {
-            throw new NotImplementedException();
+            await NavigateAsync(new ViewModelLaunchArgs() { ViewModelType = typeof(TViewModel), LaunchType = LaunchTypes.View });
+            _rootFrame.BackStack.Clear();
         }
 
         public Task GoBackAsync()
         {
-            throw new NotImplementedException();
+            _rootFrame.GoBack();
+            return Task.FromResult(default(object));
         }
     }
 }

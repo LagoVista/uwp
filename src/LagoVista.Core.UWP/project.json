@@ -3,6 +3,7 @@
     "LagoVista.Client.Core": "1.2.24-alpha1823",
     "LagoVista.Core": "1.2.24-alpha1613",
     "LagoVista.Core.Networking": "1.2.24-alpha1613",
+    "LagoVista.IoT.Logging": "1.2.24-alpha0937",
     "Microsoft.Azure.Mobile": "0.12.0",
     "Microsoft.Azure.Mobile.Analytics": "0.12.0",
     "Microsoft.Azure.Mobile.Distribute": "0.12.0",

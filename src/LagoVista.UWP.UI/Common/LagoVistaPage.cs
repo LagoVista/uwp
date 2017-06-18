@@ -160,14 +160,12 @@ namespace LagoVista.UWP.UI
 
         private void LagoVistaPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Debug.WriteLine("ON LOADDED" + this.GetType().FullName);
             AddLoadingMask();
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Debug.WriteLine("ON NAVIGATED" + this.GetType().FullName);
             AddLoadingMask();
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -178,7 +176,7 @@ namespace LagoVista.UWP.UI
                     vm.PropertyChanged += Vm_PropertyChanged;
                     await PerformNetworkOperation(async () =>
                     {
-                        vm.SetParameter(e.Parameter);
+                        vm.LaunchArgs = e.Parameter as ViewModelLaunchArgs;
                         await vm.InitAsync();
                     });
                 }
@@ -191,7 +189,7 @@ namespace LagoVista.UWP.UI
                         vm.PropertyChanged += Vm_PropertyChanged;
                         await PerformNetworkOperation(async () =>
                         {
-                            //vm.SetParameter(args.Parameter);
+                            vm.LaunchArgs = e.Parameter as ViewModelLaunchArgs;
                             await vm.InitAsync();
                         });
                         DataContext = vm;
