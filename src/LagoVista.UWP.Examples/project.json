@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
     "LagoVista.Client.Core": "1.2.24-alpha1823",
-    "LagoVista.Core": "1.2.24-alpha1613",
-    "LagoVista.Core.Networking": "1.2.24-alpha1613",
-    "Newtonsoft.Json": "10.0.2"
+    "LagoVista.Core": "1.2.29-alpha1859",
+    "LagoVista.Core.Networking": "1.2.29-alpha1859",
+    "Newtonsoft.Json": "10.0.3"
   },
   "frameworks": {
     "uap10.0": {}

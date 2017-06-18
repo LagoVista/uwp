@@ -12,7 +12,7 @@ namespace LagoVista.Core.UWP.IconFonts
         /// Initializes a new instance of the <see cref="IoniconsModule" /> class.
         /// </summary>
         public IoniconsModule()
-            : base("Ionicons", "Ionicons", "/LagoVista.Core.UWP/Assets/Fonts/iconize-ionicons.ttf", IoniconsCollection.Icons)
+            : base("Ionicons", "Ionicons", "/Assets/Fonts/iconize-ionicons.ttf", IoniconsCollection.Icons)
         {
             // Intentionally left blank
         }

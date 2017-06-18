@@ -12,7 +12,7 @@ namespace LagoVista.Core.UWP.IconFonts
         /// Initializes a new instance of the <see cref="MaterialModule" /> class.
         /// </summary>
         public MaterialModule()
-            : base("Material Icons", "MaterialIcons-Regular", "/LagoVista.Core.UWP/Assets/Fonts/iconize-material.ttf", MaterialCollection.Icons)
+            : base("Material Icons", "MaterialIcons-Regular", "/Assets/Fonts/iconize-material.ttf", MaterialCollection.Icons)
         {
             // Intentionally left blank
         }
