@@ -242,16 +242,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Simulator\src\LagoVista.Client.Core\LagoVista.Client.Core.csproj">
-      <Project>{786a2d0b-c3e4-4d7a-89c5-86ebc94e1b45}</Project>
-      <Name>LagoVista.Client.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Simulator\src\LagoVista.Xamarin.Core\LagoVista.XPlat.Core.csproj">
-      <Project>{d5dd4ca3-3b5c-4a0e-aa82-4cebb9a7160d}</Project>
-      <Name>LagoVista.XPlat.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

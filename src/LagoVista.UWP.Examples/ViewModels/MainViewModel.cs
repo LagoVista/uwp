@@ -48,7 +48,7 @@ namespace LagoVista.UWP.Examples.ViewModels
 
         private void _client_NewDeviceFound(object sender, uPnPDevice e)
         {
-            Logger.Log(LogLevel.Message, "ClientFound", e.FriendlyName);
+            Logger.AddCustomEvent(LogLevel.Message, "ClientFound", e.FriendlyName);
         }
 
         public RelayCommand StartSSDPDiscoveryCommand { get; private set; }
